@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Demo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background-color: slategray;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: springgreen;
+            position: absolute;
+            animation-name: move;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-direction: normal;
+            animation-timing-function: ease-in;
+            animation-delay:0.5s;
+        }
+        
+        .ReverseBox {
+            width: 100px;
+            height: 100px;
+            top: 100px;
+            left: 100px;
+            background-color: tomato;
+            position: absolute;
+            animation-name: moveInside;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-direction: reverse;
+            animation-timing-function: ease-in;
+        }
+        
+        @keyframes moveInside {
+            0% {
+                top: 100px;
+                left: 100px;
+            }
+            25% {
+                top: 100px;
+                left: calc(100vw - 200px);
+            }
+            50% {
+                top: calc(100vh - 200px);
+                left: calc(100vw - 200px);
+            }
+            75% {
+                top: calc(100vh - 200px);
+                left: 100px;
+            }
+            100% {
+                top: 100px;
+                left: 100px;
+            }
+        }
+
+        
+        @keyframes move {
+            0% {
+                top: 0;
+                left: 0;
+            }
+            25% {
+                top: 0;
+                left: calc(100vw - 100px);
+            }
+            50% {
+                top: calc(100vh - 100px);
+                left: calc(100vw - 100px);
+            }
+            75% {
+                top: calc(100vh - 100px);
+                left: 0;
+            }
+            100% {
+                top: 0;
+                left: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+        <div class="ReverseBox"></div>
+    </div>
+
+</body>
+</html>

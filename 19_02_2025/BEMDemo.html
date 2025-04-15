@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BEM</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: poppins, Arial, sans-serif;
+                background-color: #f8f9fa;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .card {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                width: 400px;
+            }
+            .card__title {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 10px;
+            }
+            .card__description {
+                font-size: 1rem;
+                color: #555;
+            }
+            .card__description p {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="card__title">
+                This is a simple card about BEM architecture
+            </div>
+            <div class="card__description">
+                <p>
+                    BEM stands for Block Element Modifier. It is a methodology
+                    that helps you to create reusable components and code
+                    sharing in front-end development.
+                </p>
+                <p>
+                    BEM is not a framework. It is a set of rules that you can
+                    apply to your CSS and HTML. BEM is a naming convention for
+                    classes in HTML and CSS. It stands for Block, Element,
+                    Modifier.
+                </p>
+                <p>
+                    BEM class names are written in the format
+                    block__element--modifier. The block represents the
+                    higher-level component in a block of code. The element
+                    represents a descendant of the block that helps form the
+                    block as a whole. The modifier represents a different state
+                    or version of the block.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

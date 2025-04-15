@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple HTML Form</title>
+  </head>
+  <body>
+    <h2>Sample Form</h2>
+    <form action="#" method="post">
+      <label for="textInput">Text Input:</label>
+      <input
+        type="text"
+        id="textInput"
+        name="textInput"
+        placeholder="Enter some text"
+        required
+        pattern="[A-Za-z ]+"
+        title="Only letters and spaces are allowed."
+      /><br /><br />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter password"
+        required
+        minlength="6"
+        title="Password must be at least 6 characters long."
+      />
+<br /><br />
+
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+      /><br /><br />
+
+      <label for="number">Number:</label>
+      <input
+        type="number"
+        id="number"
+        name="number"
+        placeholder="Enter a number"
+        required
+        min="1"
+        max="100"
+        title="from 1 to 100 only"
+      />
+      <br /><br />
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required /><br /><br />
+
+      <label for="radio">select your gender:</label>
+      <input type="radio" id="option1" name="radio" value="Male" checked />
+      <label for="option1">Male</label>
+      <input type="radio" id="option2" name="radio" value="Female" />
+      <label for="option2">Female</label><br /><br />
+
+      <label for="file">Upload File:</label>
+      <input
+        type="file"
+        id="file"
+        name="file"
+        accept=".jpg,.jpeg,.png,.pdf"
+        required
+      /><br /><br />
+
+      <label for="textarea">Message:</label><br />
+      <textarea
+        id="textarea"
+        name="textarea"
+        rows="4"
+        cols="50"
+        placeholder="Enter your message here"
+        required
+      ></textarea>
+      <br /><br />
+
+      <input type="checkbox" id="checkbox" name="checkbox" required />
+      <label for="checkbox">Accept Terms and conditions</label>
+      <br /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

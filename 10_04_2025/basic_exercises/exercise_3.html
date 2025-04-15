@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>get current date in different formats</title>
+
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+
+            height: 100vh;
+        }
+        p {
+            font-size: 18px;
+        }
+        input[type="radio"] {
+            margin-right:50px;
+        }
+        label {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <label for="date1">YYYY-MM-DD</label>
+    <input type="radio" name="date" id="date1" value="YYYY-MM-DD" checked>
+    <label for="date2">DD-MM-YYYY</label>
+    <input type="radio" name="date" id="date2" value="DD-MM-YYYY">
+    <label for="date3">MM-DD-YYYY</label>
+    <input type="radio" name="date" id="date3" value="MM-DD-YYYY">
+    <label for="date4">YYYY/MM/DD</label>
+    <input type="radio" name="date" id="date4" value="YYYY/MM/DD">
+    <label for="date5">DD/MM/YYYY</label>
+    <input type="radio" name="date" id="date5" value="DD/MM/YYYY">
+    <label for="date6">MM/DD/YYYY</label>
+    <input type="radio" name="date" id="date6" value="MM/DD/YYYY">
+
+    <p id="date"></p>
+
+    <script>
+
+        Array.from(document.getElementsByTagName("input")).forEach((input) => {
+            input.addEventListener("change", function() {
+               changeFormat(this);
+            });
+        });
+
+        function changeFormat(input){
+             const date = new Date();
+                let formattedDate;
+
+                if(input.value === 'YYYY-MM-DD') {
+
+                    formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, '0') + "-" + date.getDate().toString().padStart(2, '0');
+                } else if(input.value === 'DD-MM-YYYY') {
+                    formattedDate = date.getDate().toString().padStart(2, '0') + "-" + (date.getMonth() + 1).toString().padStart(2, '0') + "-" + date.getFullYear();
+                } else if(input.value === 'MM-DD-YYYY') {
+                    formattedDate = (date.getMonth() + 1).toString().padStart(2, '0') + "-" + date.getDate().toString().padStart(2, '0') + "-" + date.getFullYear();
+                } else if(input.value === 'YYYY/MM/DD') {
+                    formattedDate = date.getFullYear() + "/" + (date.getMonth() + 1).toString().padStart(2, '0') + "/" + date.getDate().toString().padStart(2, '0');
+                } else if(input.value === 'DD/MM/YYYY') {
+                    formattedDate = date.getDate().toString().padStart(2, '0') + "/" + (date.getMonth() + 1).toString().padStart(2, '0') + "/" + date.getFullYear();
+                } else if(input.value === 'MM/DD/YYYY') {
+                    formattedDate = (date.getMonth() + 1).toString().padStart(2, '0') + "/" + date.getDate().toString().padStart(2, '0') + "/" + date.getFullYear();
+                }
+
+                document.getElementById("date").innerText = formattedDate;
+        }
+
+
+        document.addEventListener("DOMContentLoaded", changeFormat(document.querySelector("input[type='radio']:checked")));
+
+    </script>
+
+</body>
+</html>

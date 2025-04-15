@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chess Board Design</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #555;
+      }
+      .board {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        background-color: gray;
+        width: 800px;
+        height: 800px;
+      }
+      .chess_box {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="board"></div>
+
+    <script>
+      // const boxes = 64;
+      const cols = 8;
+      const rows = 8;
+      let board = document.querySelector(".board");
+
+      for (i = 0; i < rows; i++) {
+        if (i % 2 == 0) {
+          for (j = 0; j < cols; j++) {
+            let box = document.createElement("div");
+            box.classList.add("chess_box");
+            if(j % 2 == 0) {
+              box.style.backgroundColor = "white";
+            } else {
+              box.style.backgroundColor = "black";
+            }
+            board.appendChild(box);
+          }
+        } else {
+          for (j = 0; j < cols; j++) {
+            let box = document.createElement("div");
+            box.classList.add("chess_box");
+            if(j % 2 == 0) {
+              box.style.backgroundColor = "black";
+            } else {
+              box.style.backgroundColor = "white";
+            }
+            board.appendChild(box);
+          }
+        }
+
+        // let box = document.createElement('div');
+
+        // box.classList.add('chess_box');
+        // board.appendChild(box);
+      }
+    </script>
+  </body>
+</html>

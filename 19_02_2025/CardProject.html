@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Card Project</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                user-select: none;
+            }
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-color: rgb(55, 55, 55);
+                font-family: "Arial", sans-serif;
+            }
+            .card {
+                width: 500px;
+                /* height: 800px; */
+                background-color: rgba(255, 255, 255, 0.1);
+                box-shadow: 0px 4px 20px    rgba(255, 255, 255, 0.1);
+                border-radius: 30px;
+                display: flex;
+                align-items: center;
+                border: 1px solid rgba(255, 255, 255, 0.206);
+                padding: 2rem;
+                flex-direction: column;
+                transition: all 0.3s ease;
+            }
+
+            .card:hover{
+                transform: scale(1.05);
+                box-shadow: 0px 4px 20px    rgba(255, 255, 255, 0.3);
+            }
+
+            .card__profile {
+                width: 250px;
+                height: 250px;
+                background-color: #f4f4f4;
+                border-radius: 50%;
+                margin: 20px auto;
+                border: 1px solid gray;
+                overflow: hidden;
+            }
+
+            .card__profile img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .card__name {
+                font-size: 3rem;
+                font-weight: 700;
+                margin: 20px 0;
+                letter-spacing: 2px;
+                color: #dbdbdb;
+                text-shadow: 0 0 100px#000;
+                font-family: anton, "Gill Sans", "Gill Sans MT", Calibri,
+                    "Trebuchet MS", sans-serif;
+            }
+
+            .card__job_name {
+                font-size: 1.6rem;
+                font-weight: 500;
+                color: rgb(200, 200, 200);
+            }
+
+            .card__bio {
+                font-size: 1.3rem;
+                font-weight: 400;
+                color: rgb(174, 174, 174);
+                text-align: center;
+                padding: 20px;
+            }
+
+            .card__contact {
+                margin-top: 20px;
+                background-color: rgba(72, 72, 252, 0.888);
+                padding: 2rem;
+                color: white;
+                border-radius: 20px;
+                width: 100%;
+                text-align: center;
+                transition: all 0.3s ease;
+            }
+
+            .card__contact a {
+                text-decoration: none;
+                color: white;
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+
+            .card__contact:hover {
+                transform: scale(1.05);
+                background-color: rgb(54, 54, 200);
+            }
+
+            .card__contact:active{
+                transform: scale(1);
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <div class="card__profile">
+                    <img
+                        src="https://as1.ftcdn.net/v2/jpg/02/43/12/34/1000_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+                        alt="profile image"
+                    />
+                </div>
+                <div class="card__name">Shivrajsinh Zala</div>
+                <div class="card__job_name">Front end Developer</div>
+                <div class="card__bio">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Nesciunt veritatis molestiae eum accusamus est asperiores
+                    dignissimos quo sunt vero incidunt.
+                </div>
+                <div class="card__contact">
+                    <a href="mailto:shivrajsinhzala@hotmail.com">
+                    Hire me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body> 
+</html>

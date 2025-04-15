@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>window.history API</title>
+  </head>
+
+  <body>
+    <button>Go back</button>
+
+  <script>
+    const btn = document.getElementsByTagName("button")[0];
+
+ 
+      btn.addEventListener("click", () => {
+        console.log("hello");
+        window.history.go(-2);
+      });
+
+  </script>  </body>
+</html>

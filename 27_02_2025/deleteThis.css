@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+body {
+    background-color: #f5f5f5;
+    height: 100vh;
+    font-family: anton, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+        "Open Sans", "Helvetica Neue", sans-serif;
+    text-transform: uppercase;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 140px;
+    padding-right: 140px;
+    padding-top: 40px;
+    color: white;
+}
+.hero {
+    width: 100%;
+    height: 1040px;
+    background-image: url(hero_bg.png);
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    z-index: 2;
+}
+
+nav img {
+    width: 116px;
+    height: 95px;
+}
+
+nav ul {
+    margin-left: 139px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    gap: 66px;
+}
+nav ul li a {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 24.09px;
+    /* font-weight: 400; */
+    text-wrap: nowrap;
+    font-family: anton, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+}
+
+nav span {
+    display: flex;
+    align-items: center;
+}
+nav svg {
+    font-size: 2rem;
+    display: inline;
+    cursor: pointer;
+}
+
+.locationButton {
+    background-color: white;
+    color: black;
+    width: 162px;
+    height: 65px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-left: 29px;
+    text-wrap: nowrap;
+    border: none;
+    border-radius: 45px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: anton, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+}
+
+.hero__content {
+    padding-left: 120px;
+    padding-right: 92px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    color: white;
+    text-align: left;
+    vertical-align: top;
+}
+
+.active {
+    transition: all 0.5s ease;
+    animation: showMenu 0.5s ease forwards alternate;
+}
+
+.letsGo {
+    animation: removeMiddle 0.5s ease forwards alternate;
+}
+
+.firstRotate {
+    transform-origin: top left;
+    animation: rotateFirst 0.5s ease forwards;
+}
+
+.lastRotate {
+    transform-origin: bottom left;
+    animation: rotateLast 0.5s ease forwards;
+}
+
+.titleMobile {
+    display: none;
+}
+
+.descMobile {
+    display: none;
+}
+
+.hero__content .right {
+    display: inline-block;
+}
+
+.hero__content .left {
+    display: inline-block;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; */
+}
+
+.hero__content .left h1 {
+    line-height: 210.75px;
+    font-size: 140px;
+    text-wrap: nowrap;
+    z-index: 12;
+}
+
+.hero__content .left h2 {
+    font-size: 50px;
+    margin-top: -14px;
+    margin-bottom: 1rem;
+    text-wrap: nowrap;
+    color: black;
+}
+
+.hero__content .right img {
+    width: 806px;
+    height: 800px;
+    object-fit: contain;
+}
+
+.orderButton {
+    width: 331.4769287109375px;
+    height: 133px;
+    background-color: #af1201;
+    border-radius: 500px;
+    border: none;
+    outline: none;
+    font-family: Anton, Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 18px;
+    /* padding: 2rem 4rem; */
+    /* border-radius: 100px; */
+    /* font-size: 2rem; */
+    /* margin-top: 2rem; */
+}
+
+.menu {
+    /* display: none; */
+    width: 50px;
+    height: 4px;
+    background-color: black;
+    margin: 6px 0;
+    /* transition: 0.4s; */
+    transition: all 0.5s ease;
+    /* animation-direction: alternate; */
+    border-radius: 30px;
+}
+
+.menuIcon {
+    display: none;
+    transition: all 0.5s ease;
+    /* animation-direction: alternate; */
+}
+
+.menu.two {
+    width: 40px;
+    transform: translateX(10px);
+    transition: all 0.5s ease;
+    animation-direction: alternate;
+    /* margin: 0 6px 0  0; */
+}

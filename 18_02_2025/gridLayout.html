@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Practice
+    </title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container{
+            display: grid;
+            grid-template-columns: 100px 100px 100px;
+            grid-template-rows: 100px 100px 100px;
+            gap: 10px;
+        }
+        .container div{
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+        }
+        .container .one{
+            grid-area: span 2 / span 2;
+            background-color: coral;
+        }
+        .container .last{
+            grid-area: auto / span 3;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="one"></div>
+        <div></div>
+        <div></div>
+        <div class="last"></div>
+        
+    </div>
+</body>
+</html>

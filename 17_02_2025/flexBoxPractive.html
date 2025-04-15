@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FlexBox Practice</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                min-height: 100vh;
+                text-align: center;
+                text-transform: capitalize;
+                overflow: hidden;
+            }
+            .container{
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                height: 95vh;
+                background-color: #f1f1f1;
+                flex-wrap: wrap;
+            }
+
+            .box{
+                flex: 1;
+                min-width: 15rem;
+                min-height: 15rem;
+                background-color: #333;
+                color: white;
+                padding: 1rem;
+                text-align: left;
+                margin: 1rem;
+            }
+            .b1{
+                flex-basis: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>FlexBox Practice</h1>
+        <div class="container">
+            <div class="box b1">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box">4</div>
+            <div class="box">5</div>
+            <div class="box">6</div>
+            <div class="box">7</div>
+            <div class="box">8</div>
+            
+        </div>
+    </body>
+</html>

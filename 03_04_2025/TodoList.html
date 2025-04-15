@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List app</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+      }
+      .footer-container {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        width: 100%;
+        height: 150px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+      }
+      h1 {                                  
+        margin: 0;                                  
+      }                                 
+      form {                                    
+        display: flex;                                  
+        justify-content: center;                                    
+        margin-top: 20px;                                   
+      }                                 
+      input[type="text"] {                                  
+        width: 300px;                                   
+        padding: 10px;                                  
+        border-radius: 5px;                                 
+        border: 1px solid #ccc;                                 
+      }                                 
+      button {                                  
+        margin: 0 10px;                                 
+        padding: 10px 15px;                                 
+        border-radius: 5px;                                 
+        border: none;                                   
+        background-color: #28a745;                                  
+        color: white;                                   
+        cursor: pointer;                                    
+      }                                 
+      button:hover {                                    
+        background-color: #218838;                                  
+      }                                 
+                                    
+      .todo-container {                                 
+        display: flex;                                  
+        justify-content: flex-start;                                    
+        align-items: flex-start;                                    
+        flex-wrap: wrap;                                    
+        gap: 20px 10px;                                 
+        padding: 20px 10px;
+        align-content: flex-start;
+        overflow-y: auto;
+        padding-bottom: 100px;
+        height: calc(100vh - 150px); 
+      }
+      .todo-wrapper {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        /* flex-basis: 300px; */
+        flex-grow: 1;
+        text-align: center;
+        max-width: 50%;
+      }
+      #readBtn {
+        margin: 10px 0;
+      }
+        .todo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .text:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="todo-container"></div>
+
+    <div class="footer-container">
+      <h1>To Do List</h1>
+      <form id="todo-form">
+        <input
+          type="text"
+          id="todo-input"
+          placeholder="Add a new task"
+          required
+        />
+        <button type="submit">Add</button>
+      </form>
+    </div>
+
+    <script>
+      const newTodoText = document.getElementById("todo-input");
+      const todoForm = document.getElementById("todo-form");
+      const todoContainer = document.querySelector(".todo-container");
+
+      const todoList = {};
+      let savedTodoList = localStorage.getItem("todoList");
+
+      if (savedTodoList) {
+        const parsedTodoList = JSON.parse(savedTodoList);
+        for (const [key, value] of Object.entries(parsedTodoList)) {
+          todoList[key] = value;
+        }
+      }
+
+      todoForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const newTodo = document.createElement("div");
+        newTodo.classList.add("todo-wrapper");
+        newTodo.innerHTML = `<p class="todo-text"><span class="text" data-id="Td${Date.now()}">${
+          newTodoText.value
+        }</span><br><button id='readBtn' onclick="markTodoAsRead(event)">Mark As Done</button></p>`;
+        todoContainer.appendChild(newTodo);
+
+        const TodoId = `Td${Date.now()}`;
+        todoList[TodoId] = {
+          text: newTodoText.value,
+          isRead: false,
+        };
+
+        saveTodoList();
+
+        newTodoText.value = ""; 
+
+        console.log(todoList);
+      });
+
+      function saveTodoList() {
+        localStorage.setItem("todoList", JSON.stringify(todoList));
+      }
+
+      const markTodoAsRead = (event) => {
+        const todoText =
+          event.target.parentElement.getElementsByClassName("text")[0];
+        console.log(todoText);
+        todoText.style.textDecoration = "line-through";
+        todoText.style.color = "gray";
+
+        // console.log(todoText.dataset.id)
+
+        console.log(todoText.dataset.id);
+        console.log(todoList[todoText.dataset.id]);
+        todoList[todoText.dataset.id].isRead = true;
+        console.log(todoList[todoText.dataset.id]);
+        saveTodoList();
+        event.target.remove();
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        if (savedTodoList) {
+          const parsedTodoList = JSON.parse(savedTodoList);
+          for (const [key, value] of Object.entries(parsedTodoList)) {
+            console.log(key);
+            const newTodo = document.createElement("div");
+
+            newTodo.classList.add("todo-wrapper");
+            newTodo.innerHTML = `<p class="todo-text"><span class="text" style="text-decoration:${
+              value.isRead ? "line-through" : "none"
+            }; color:${value.isRead ? "gray" : "black"};"
+                     data-id="${key}" >${
+              value.text
+            }</span><br>
+        ${value.isRead ? "" : '<button id="readBtn" onclick="markTodoAsRead(event)">Mark As Done</button>'}</p>
+            `;
+            ;
+            todoContainer.appendChild(newTodo);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

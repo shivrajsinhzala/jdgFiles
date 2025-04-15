@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Years When Jan 1 is Sunday</title>
+</head>
+<body>
+    <h1>Find Years When Jan 1 is Sunday</h1>
+    <ul id="years"></ul>
+
+    <script>
+        const years = [];
+
+        for (let year = 0; year <= 3000; year++) {
+            const date = new Date(year, 0, 1);
+            if(date.getDay() === 0){
+                years.push(year);
+            }
+        }
+
+        document.getElementById("years").innerHTML = '<li>' + years.join('</li><li>') + '</li>';
+   
+   </script>
+    
+</body>
+</html>

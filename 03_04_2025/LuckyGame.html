@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LuckyGame</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #balance,
+      #betAmount {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      button:active {
+        background-color: #004085;
+      }
+      button:hover {
+        transform: scale(1.05);
+      }
+      input[type="number"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px;
+      }
+
+      #transactions {
+        margin-top: 20px;
+        text-align: left;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #transactionList {
+        list-style-type: none;
+        padding: 0;
+      }
+      #transactionList li {
+        margin: 5px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+      #transactionList li.won {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+      }
+      #transactionList li.lost {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+      }
+      #transactionList li span {
+        font-weight: bold;
+      }
+
+      #transactionList {
+        max-height: 500px;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column-reverse;
+      }
+
+      .test-mode {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lucky Game</h1>
+    <div id="balance">Balance: $1000</div>
+    <div id="betAmount">Bet Amount: $0</div>
+
+    <h2>Place Your Bet</h2>
+    <input type="number" id="betInput" placeholder="Enter bet amount" />
+    <button onclick="placeBet()">Place Bet</button>
+    <button onclick="Allin()">All in</button>
+
+    <h2>Transaction History</h2>
+    <div id="transactions">
+      <ul id="transactionList">
+        <!-- <li>
+          Bet Amount: <span class="bet-amount">$0</span> | Multiplier:
+          <span class="Multiplier">x1.1</span> | Amount Won:
+          <span class="amount-won">$1.56</span>
+        </li> -->
+      </ul>
+    </div>
+
+    <div class="test-mode">
+      <div>
+
+        <label for="testMode">Gamble Mode:</label>
+        <input type="checkbox" id="testMode" onchange="toggleTestMode()" />
+      </div>
+
+      <br>
+     ( enable test mode to use this feature )
+      <br><b></b>
+      <label for="gamblersBet">Gambler's Bet if won(multiplier):</label>
+      <input type="number" id="gamblersBet" placeholder="multiply bet if win" />
+
+      
+      <label for="gamblersBetLose">Gambler's Bet if lose(multiplier):</label>
+      <input type="number" id="gamblersBetLose" placeholder="multiply bet if lose" />
+
+    </div>
+    <script>
+    let betHistory =[];      
+    let transactionHistory = [];
+      let testMode = false;
+      const toggleTestMode = () => {
+        testMode = !testMode;
+      };
+
+      function Allin(){
+        const maxBet = userBalance;
+        document.getElementById("betInput").value = maxBet;
+        placeBet();
+      }
+
+
+      function test(betAmount, multiplier) {
+
+        const gamblersBet = parseFloat(document.getElementById("gamblersBet").value);
+        const gamblersBetLose = parseFloat(document.getElementById("gamblersBetLose").value);
+
+        if(multiplier<1){
+          document.getElementById("betInput").value = betAmount * gamblersBetLose;
+        }
+        else{
+          document.getElementById("betInput").value = betAmount * gamblersBet;
+        }
+      }
+
+      let userBalance = 1000;
+      let betAmount = 0;
+
+      const transactionList = document.getElementById("transactionList");
+
+      function placeBet() {
+        const amount = parseFloat(document.getElementById("betInput").value);
+        if (isNaN(amount) || amount <= 0) {
+          alert("Please enter a valid bet amount.");
+          return;
+        }
+
+        if (amount > userBalance) {
+          alert("Insufficient balance!");
+          return;
+        }
+
+        betAmount = amount;
+        userBalance -= betAmount;
+        document.getElementById("balance").innerText =
+          "Balance: $" + userBalance.toFixed(3);
+        document.getElementById("betAmount").innerText =
+          "Bet Amount: $" + betAmount;
+
+        multiplyBet();
+
+    
+      }
+
+      function multiplyBet() {
+        let multiplier;
+
+        // Reduced win chance from 50% to 40% (0.4 instead of 0.5)
+        if (Math.random() < 0.4) {
+          // Now 40% chance to win
+          // Smaller win multiplier range (1-4 instead of 1-5)
+          multiplier = 1 + Math.random() * 3; // Multiplier between 1 and 4
+        } else {
+          // Increased loss probability (60% chance)
+          multiplier = Math.random() * 0.8; // Multiplier between 0 and 0.8
+        }
+
+        // Rest of the function remains the same...
+        if (multiplier < 1) {
+          multiplier = 0;
+        }
+
+        let amountWon = betAmount * multiplier;
+
+        if (amountWon < 0) {
+          amountWon = 0;
+        }
+
+        userBalance += amountWon;
+
+        document.getElementById("balance").innerText =
+          "Balance: $" + userBalance.toFixed(3);
+        document.getElementById("betAmount").innerText =
+          "Bet Amount: $" + betAmount;
+
+        addTransaction(betAmount, amountWon, multiplier);
+            if(testMode){
+          test(betAmount , multiplier);
+        }
+        looser();
+      }
+
+      function addTransaction(betAmount, amountWon, multiplier) {
+
+        betHistory.push({
+          betAmount: betAmount,
+          amountWon: amountWon,
+          multiplier: multiplier,
+        });
+
+        const transactionList = document.getElementById("transactionList");
+        const li = document.createElement("li");
+        li.innerHTML = `Bet Amount: <span class="amount">$${betAmount}</span> | Multiplier: <span class="Multiplier">x${multiplier.toFixed(
+          3
+        )}</span> | Amount Won: <span class="amount-won">$${amountWon.toFixed(
+          3
+        )}</span>`;
+        if (multiplier > 1) {
+          li.classList.add("won");
+        } else {
+          li.classList.add("lost");
+        }
+        transactionList.appendChild(li);
+        li.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+        localStorage.setItem(
+          "transactionHistory",
+          JSON.stringify(transactionList.innerHTML)
+        );
+
+        const transactionHistory = JSON.parse(
+          localStorage.getItem("transactionHistory")
+        );
+
+        transactionList.innerHTML = transactionHistory || "";
+      }
+
+      function looser() {
+        if (userBalance <= 1) {
+          userBalance = 1000; // Reset balance to $1000
+          document.getElementById("balance").innerText =
+            "Balance: $" + userBalance.toFixed(3);
+          document.getElementById("betAmount").innerText = "Bet Amount: $0";
+          document.getElementById("transactionList").innerHTML = ""; // Clear transaction history
+
+          const popup = document.createElement("div");
+          popup.innerHTML = `<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">Game Over! You have lost all your money!<br><button onclick="location.reload()">Play Again</button></div>`;
+          popup.style.position = "fixed";
+          popup.style.top = "0";
+          popup.style.left = "0";
+          popup.style.width = "100%";
+          popup.style.height = "100%";
+          popup.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+          popup.style.display = "flex";
+          popup.style.justifyContent = "center";
+          popup.style.alignItems = "center";
+          popup.style.zIndex = "1000"; // Ensure it appears above other elements
+          document.body.appendChild(popup);
+          const button = document.createElement("button");
+          button.innerText = "Play Again";
+          button.style.marginTop = "20px";
+          button.style.padding = "10px 20px";
+          button.style.fontSize = "16px";
+          button.style.cursor = "pointer";
+          button.style.border = "none";
+          button.style.borderRadius = "5px";
+          button.style.backgroundColor = "#007bff";
+          button.style.color = "white";
+          button.style.transition = "background-color 0.3s, transform 0.3s";
+          button.onmouseover = function () {
+            button.style.backgroundColor = "#0056b3";
+          };
+          button.onmouseout = function () {
+            button.style.backgroundColor = "#007bff";
+          };
+          button.onmousedown = function () {
+            button.style.backgroundColor = "#004085";
+          };
+          button.onmouseup = function () {
+            button.style.backgroundColor = "#0056b3";
+          };
+          button.onclick = function () {
+            location.reload(); // Reload the page to reset the game
+          };
+          popup.appendChild(button);
+        }
+      }
+    </script>
+  </body>
+</html>

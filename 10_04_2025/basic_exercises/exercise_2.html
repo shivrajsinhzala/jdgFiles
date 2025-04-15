@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise 2</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 50px;
+        }
+        p {
+            font-size: 18px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #day, #time {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    this is a normal html page
+    some content here
+   
+    <p id="day"></p>
+    <p id="time"></p>
+    <button onclick="hello()">print this page</button>
+
+     <script>
+        const date = new Date(); 
+        const day = date.getDay();
+        const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+        const time = date.getHours() + ampm + ":" + date.getMinutes() + ":" + date.getSeconds();
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        document.getElementById("day").innerText = days[day];
+        document.getElementById("time").innerText = time;
+
+        function hello() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

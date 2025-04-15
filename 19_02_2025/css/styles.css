@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+body {
+  font-family: "poppins", Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #222;
+  padding: 10px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+  margin-bottom: 10px;
+}
+body header h1 {
+  margin: 0;
+}
+body header p {
+  margin: 0;
+}
+body main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+body main .container {
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  height: 90%;
+  width: 90%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+body main .container h2 {
+  margin-top: 0;
+}
+body main .container p {
+  margin-bottom: 0;
+}
+body main .container .box {
+  width: 32%;
+  height: 90%;
+  background-color: #666;
+  border-radius: 12.5px;
+  padding: 10px;
+  box-sizing: border-box;
+  color: white;
+  display: grid;
+  font-size: 2rem;
+  place-content: center;
+  transition: all 0.9s;
+}
+body main .container .box:hover {
+  background-color: #333333;
+  transform: rotatey(180deg);
+}
+body footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px 5px 0 0;
+  margin-top: 10px;
+}/*# sourceMappingURL=styles.css.map */

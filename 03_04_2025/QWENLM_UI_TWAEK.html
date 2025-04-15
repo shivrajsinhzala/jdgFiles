@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucky Game</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    /* Balance and Bet Amount Section */
+    .balance-bet {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .balance-bet div {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    /* Input and Button Section */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    input[type="number"] {
+      width: 250px;
+      padding: 12px;
+      font-size: 1rem;
+      border: 2px solid #2c3e50;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="number"]:focus {
+      border-color: #3498db;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      background: #3498db;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    /* Transaction History Section */
+    .transactions {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      margin-top: 20px;
+    }
+
+    .transactions h2 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    #transactionList {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      max-height: 300px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    #transactionList li {
+      padding: 10px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #transactionList li.won {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    #transactionList li.lost {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    /* Test Mode Section */
+    .test-mode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      width: 250px;
+    }
+
+    .test-mode label {
+      font-size: 0.9rem;
+      color: #2c3e50;
+    }
+
+    .test-mode input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .test-mode input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      font-size: 0.9rem;
+      border: 1px solid #2c3e50;
+      border-radius: 5px;
+    }
+
+    /* Game Over Popup */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-content button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      background: #3498db;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .popup-content button:hover {
+      background: #2980b9;
+    }
+
+    .popup-content button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <h1>Lucky Game</h1>
+  <div class="balance-bet">
+    <div id="balance">Balance: $1000</div>
+    <div id="betAmount">Bet Amount: $0</div>
+  </div>
+
+  <div class="controls">
+    <input type="number" id="betInput" placeholder="Enter bet amount" />
+    <button onclick="placeBet()">Place Bet</button>
+    <button onclick="Allin()">All In</button>
+  </div>
+
+  <div class="transactions">
+    <h2>Transaction History</h2>
+    <ul id="transactionList"></ul>
+  </div>
+
+  <div class="test-mode">
+    <div>
+      <label for="testMode">Gamble Mode:</label>
+      <input type="checkbox" id="testMode" onchange="toggleTestMode()" />
+    </div>
+    <small>(Enable test mode to use this feature)</small>
+    <label for="gamblersBet">Gambler's Bet if won (multiplier):</label>
+    <input type="number" id="gamblersBet" placeholder="Multiply bet if win" />
+    <label for="gamblersBetLose">Gambler's Bet if lose (multiplier):</label>
+    <input type="number" id="gamblersBetLose" placeholder="Multiply bet if lose" />
+  </div>
+
+  <script>
+    let betHistory = [];
+    let transactionHistory = [];
+    let testMode = false;
+
+    const toggleTestMode = () => {
+      testMode = !testMode;
+    };
+
+    function Allin() {
+      const maxBet = userBalance;
+      document.getElementById("betInput").value = maxBet;
+      placeBet();
+    }
+
+    function test(betAmount, multiplier) {
+      const gamblersBet = parseFloat(document.getElementById("gamblersBet").value);
+      const gamblersBetLose = parseFloat(document.getElementById("gamblersBetLose").value);
+      if (multiplier < 1) {
+        document.getElementById("betInput").value = betAmount * gamblersBetLose;
+      } else {
+        document.getElementById("betInput").value = betAmount * gamblersBet;
+      }
+    }
+
+    let userBalance = 1000;
+    let betAmount = 0;
+    const transactionList = document.getElementById("transactionList");
+
+    function placeBet() {
+      const amount = parseFloat(document.getElementById("betInput").value);
+      if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid bet amount.");
+        return;
+      }
+      if (amount > userBalance) {
+        alert("Insufficient balance!");
+        return;
+      }
+      betAmount = amount;
+      userBalance -= betAmount;
+      document.getElementById("balance").innerText =
+        "Balance: $" + userBalance.toFixed(3);
+      document.getElementById("betAmount").innerText =
+        "Bet Amount: $" + betAmount;
+      multiplyBet();
+    }
+
+    function multiplyBet() {
+      let multiplier;
+      if (Math.random() < 0.4) {
+        multiplier = 1 + Math.random() * 3; // Multiplier between 1 and 4
+      } else {
+        multiplier = Math.random() * 0.8; // Multiplier between 0 and 0.8
+      }
+      if (multiplier < 1) {
+        multiplier = 0;
+      }
+      let amountWon = betAmount * multiplier;
+      if (amountWon < 0) {
+        amountWon = 0;
+      }
+      userBalance += amountWon;
+      document.getElementById("balance").innerText =
+        "Balance: $" + userBalance.toFixed(3);
+      document.getElementById("betAmount").innerText =
+        "Bet Amount: $" + betAmount;
+      addTransaction(betAmount, amountWon, multiplier);
+      if (testMode) {
+        test(betAmount, multiplier);
+      }
+      looser();
+    }
+
+    function addTransaction(betAmount, amountWon, multiplier) {
+      betHistory.push({
+        betAmount: betAmount,
+        amountWon: amountWon,
+        multiplier: multiplier,
+      });
+      const transactionList = document.getElementById("transactionList");
+      const li = document.createElement("li");
+      li.innerHTML = `Bet Amount: <span class="amount">$${betAmount}</span> | Multiplier: <span class="Multiplier">x${multiplier.toFixed(
+        3
+      )}</span> | Amount Won: <span class="amount-won">$${amountWon.toFixed(
+        3
+      )}</span>`;
+      if (multiplier > 1) {
+        li.classList.add("won");
+      } else {
+        li.classList.add("lost");
+      }
+      transactionList.appendChild(li);
+      li.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      localStorage.setItem(
+        "transactionHistory",
+        JSON.stringify(transactionList.innerHTML)
+      );
+      const transactionHistory = JSON.parse(
+        localStorage.getItem("transactionHistory")
+      );
+      transactionList.innerHTML = transactionHistory || "";
+    }
+
+    function looser() {
+      if (userBalance <= 1) {
+        userBalance = 1000; // Reset balance to $1000
+        document.getElementById("balance").innerText =
+          "Balance: $" + userBalance.toFixed(3);
+        document.getElementById("betAmount").innerText = "Bet Amount: $0";
+        document.getElementById("transactionList").innerHTML = ""; // Clear transaction history
+        const popup = document.createElement("div");
+        popup.innerHTML = `<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">Game Over! You have lost all your money!<br><button onclick="location.reload()">Play Again</button></div>`;
+        popup.style.position = "fixed";
+        popup.style.top = "0";
+        popup.style.left = "0";
+        popup.style.width = "100%";
+        popup.style.height = "100%";
+        popup.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        popup.style.display = "flex";
+        popup.style.justifyContent = "center";
+        popup.style.alignItems = "center";
+        popup.style.zIndex = "1000"; // Ensure it appears above other elements
+        document.body.appendChild(popup);
+      }
+    }
+  </script>
+</body>
+</html>

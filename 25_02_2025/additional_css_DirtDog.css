@@ -1,0 +1,269 @@
+.site-img-logo img {
+  width: 116px;
+  height: 95px;
+}
+
+.sg-site-navigation.navbar-nav {
+  margin-left: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+header#masterhead .navbar-wrapper .navbar-brand {
+  flex: initial;
+}
+
+header#masterhead .navbar-wrapper {
+  gap: 139px;
+}
+
+header#masterhead .navbar-ctas {
+  margin-left: auto;
+}
+
+.nav-cta-item {
+  padding: 0;
+}
+
+header#masterhead {
+  box-shadow: initial;
+  position: absolute;
+  width: 100vw;
+  background-color: transparent;
+}
+
+header#masterhead .navbar-ctas .nav-cta-item .btn.btn-outline-default {
+  border: none;
+  color: transparent;
+  background-image: url("https://dev.seogstage.com/sites/sg_dev_seogstage_com/uploads/2025/03/image__3_.webp");
+  width: 23px;
+  height: 31.67px;
+  background-repeat: no-repeat;
+  padding: 0;
+  border-radius: 0;
+  background-size: contain;
+  margin: 0;
+  vertical-align: middle;
+}
+
+#masterhead > div > div > nav > div > ul.nav.navbar-ctas > li:nth-child(1) {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  margin-right: 20px;
+}
+
+.container {
+  max-width: 1920px;
+}
+
+.navbar {
+  padding: 40px 128px;
+}
+
+.sg-site-navigation.navbar-nav .nav-link {
+  padding: 0;
+}
+
+.sg-site-navigation.navbar-nav > .nav-item {
+  padding: 0;
+}
+
+.sg-site-navigation.navbar-nav {
+  gap: 66px;
+}
+
+.FindALocationButton {
+  padding: 0;
+  width: 162px;
+  border-radius: 500px;
+  height: 65px;
+  text-transform: uppercase;
+  line-height: normal;
+  background-color: red;
+}
+
+.img-fluid {
+  height: 100%;
+}
+
+.primary-navbar {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 575px) {
+  .site-img-logo img {
+    width: 92px;
+    height: 75px;
+  }
+}
+
+.mobile-toggler-burger {
+  background-color: transparent;
+  width: 50px;
+  padding: 0;
+}
+
+.mobile-toggler-burger > span {
+  width: 50px;
+  margin: 10px 0;
+  border-radius: 0;
+  background-color: black;
+}
+
+#masterfoot {
+  z-index: 65849651684;
+  margin-top: -5px;
+}
+
+#masterfoot {
+  background-color: transparent !important;
+}
+
+.mobile-toggler-burger.close > span.top-bun {
+  /* transform: rotate(-45deg); */
+
+  margin-top: 12px;
+  transform: translate(0px, 5px) rotate(-45deg);
+}
+
+.mobile-toggler-burger.close > span {
+  background-color: white;
+}
+
+#mobile-nav > .inner {
+  background-color: black;
+}
+
+.mobile-toggler-burger.close {
+  margin: 20px;
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1620px) {
+  header#masterhead .navbar-wrapper {
+    gap: 40px;
+  }
+
+  .sg-site-navigation.navbar-nav {
+    gap: 50px;
+  }
+
+  /*.navbar {*/
+  /*    padding: 40px 64px;*/
+  /*}*/
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1439px) {
+  header#masterhead .navbar-wrapper {
+    gap: 30px;
+  }
+
+  .sg-site-navigation.navbar-nav {
+    gap: 40px;
+  }
+
+  .navbar {
+    padding: 40px 90px;
+    padding-left: 90px;
+  }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1280px) {
+  header#masterhead .navbar-wrapper {
+    gap: 20px;
+  }
+
+  .sg-site-navigation.navbar-nav {
+    gap: 25px;
+  }
+
+  .navbar {
+    padding: 40px 60px;
+    padding-left: 60px;
+  }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1040px) {
+  header#masterhead .navbar-wrapper {
+    gap: 10px;
+  }
+
+  .sg-site-navigation.navbar-nav {
+    gap: 15px;
+  }
+
+  .navbar {
+    padding: 40px 30px;
+    padding-left: 30px;
+  }
+}
+
+@media screen and (min-width: 767px) and (max-width: 900px) {
+  header#masterhead .navbar-wrapper {
+    gap: 10px;
+  }
+
+  .sg-site-navigation.navbar-nav {
+    gap: 5px;
+  }
+
+  .navbar {
+    padding: 40px 5px;
+    padding-left: 5px;
+  }
+
+  #masterhead > div > div > nav > div > ul.nav.navbar-ctas > li:nth-child(1) {
+    margin-right: 0px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  header#masterhead .navbar-brand img {
+    margin-top: 20px;
+  }
+
+  .mobile-toggler-burger {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #mobile-nav .ShoppingCartIcon {
+    border: none;
+    color: transparent;
+    background-image: url("https://dev.seogstage.com/sites/sg_dev_seogstage_com/uploads/2025/03/image__3_.webp");
+    width: 23px;
+    height: 31.67px;
+    background-repeat: no-repeat;
+    padding: 0;
+    border-radius: 0;
+    background-size: contain;
+    background-position: center;
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  #mobile-nav{
+    font-family:anton,  'Montserrat', sans-serif;
+  }
+
+  #mobile-nav .sg-site-navigation.navbar-nav{
+    gap:33px;
+  }
+}
+
+/*.mobile-toggler-burger>span:first-child {*/
+/*    margin-top: 0;*/
+/*}*/
+
+/*.mobile-toggler-burger>span:last-child {*/
+/*    margin-bottom: 0;*/
+/*}*/
+/* .btn.btn-default, .btn.btn-outline-default:hover {
+    background-color: initial;
+    border-color: initial;
+    color: initial;
+} */

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Grid Layout</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                --peach-yellow: #fcde9cff;
+--sandy-brown: #ffa552ff;
+--burnt-orange: #ba5624ff;
+--dark-purple: #381d2aff;
+--tea-green: #c4d6b0ff;
+            }
+            .container {
+                display: grid;
+                grid-template-columns:repeat(8, 50px); 
+                grid-template-rows: repeat(8, 50px);
+                gap: 10px;
+                grid-template-areas: 
+                'a a a a a a a a'
+                'a a a a a a a a'
+                'a a a a a a a a'
+                'b b b b c c c c'
+                'b b b b d d d d'
+                'b b b b d d d d'
+                'e e e e e e e e'
+                'e e e e e e e e';
+            }
+            .container .a{
+                background-color: var(--peach-yellow);
+                border: 1px solid #ccc;
+                padding: 20px;
+                font-size: 30px;
+                grid-area: a;
+            }
+            .container .b{
+                background-color: var(--sandy-brown);
+                border: 1px solid #ccc;
+                padding: 20px;
+                font-size: 30px;
+                grid-area: b;
+            }
+            .container .c{
+                background-color: var(--burnt-orange);
+                border: 1px solid #ccc;
+                padding: 20px;
+                font-size: 30px;
+                grid-area: c;
+            }
+            .container .d{
+                background-color: var(--dark-purple);
+                border: 1px solid #ccc;
+                padding: 20px;
+                font-size: 30px;
+                grid-area: d;
+            }
+            .container .e{
+                background-color: var(--tea-green); 
+                border: 1px solid #ccc;
+                padding: 20px;
+                font-size: 30px;
+                grid-area: e;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="a"></div>
+            <div class="b"></div>
+            <div class="c"></div>
+            <div class="d"></div>
+            <div class="e"></div>
+        </div>
+    </body>
+</html>

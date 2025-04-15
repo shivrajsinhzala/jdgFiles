@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UL LI DD Demo</title>
+
+    <style>
+        .oneContainer{
+        float: left;
+    }
+    .twoContainer{
+        float: right;
+    }
+    table{
+        border:1px solid black;
+        border-collapse: collapse;
+        margin: 10px;
+    }
+    th,td{
+        border:1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+    }
+    .tbl{
+        margin: 10px;
+    }
+
+    
+    tr:nth-child(even){
+        background-color: #f1f1f1;
+    }
+    </style>
+  </head>
+  <body>
+   <div class="oneContainer">
+     <ul>
+      <li>this is list item 1</li>
+      <li>this is list item 2</li>
+      <li>this is list item 3</li>
+      <li>this is list item 4</li>
+      <li>this is list item 5</li>
+    </ul>
+
+    <ul>
+      <li>
+        this is list item 1
+        <ul>
+          <li>sub list item 1</li>
+          <li>sub list item 2</li>
+          <li>sub list item 3</li>
+        </ul>
+      </li>
+      <li>this is list item 2</li>
+      <li>this is list item 3</li>
+    </ul>
+
+    <ol>
+      <li>this is ordered list item 1</li>
+      <li>this is ordered list item 2</li>
+      <li>this is ordered list item 3</li>
+      <li>this is ordered list item 4</li>
+      <li>this is ordered list item 5</li>
+    </ol>
+
+    <ol>
+      <li>
+        this is ordered list item 1
+        <ol>
+          <li>sub ordered list item 1</li>
+          <li>sub ordered list item 2</li>
+          <li>sub ordered list item 3</li>
+        </ol>
+      </li>
+      <li>this is ordered list item 2</li>
+      <li>this is ordered list item 3</li>
+    </ol>
+
+    <ol>
+      <li>this is ordered list 1</li>
+      <ol>
+
+          <li>this is nested ordered list</li>
+          <ol>
+
+              <li>this is nested ordered list</li>
+            </ol>
+        </ol>
+      <li>this is ordered list 2</li>
+      <li>this is ordered list 3</li>
+    </ol>
+
+
+    <ol start="10">
+      <li>this is ordered list item 10</li>
+      <li>this is ordered list item 11</li>
+      <li>this is ordered list item 12</li>
+      <li>this is ordered list item 13</li>
+      <li>this is ordered list item 14</li>
+    </ol>
+
+    <ol type="A">
+      <li>this is ordered list item A</li>
+      <li>this is ordered list item B</li>
+      <li>this is ordered list item C</li>
+      <li>this is ordered list item D</li>
+      <li>this is ordered list item E</li>
+    </ol>
+
+
+    <ol type="I">
+      <li>this is ordered list item I</li>
+      <li>this is ordered list item II</li>
+      <li>this is ordered list item III</li>
+      <li>this is ordered list item IV</li>
+      <li>this is ordered list item V</li>
+    </ol>
+
+    <ol type="i">
+      <li>this is ordered list item i</li>
+      <li>this is ordered list item ii</li>
+      <li>this is ordered list item iii</li>
+      <li>this is ordered list item iv</li>
+      <li>this is ordered list item v</li>
+    </ol>
+
+    <ol type="a">
+      <li>this is ordered list item a</li>
+      <li>this is ordered list item b</li>
+      <li>this is ordered list item c</li>
+      <li>this is ordered list item d</li>
+      <li>this is ordered list item e</li>
+    </ol>
+
+    <ol type="1">
+      <li>this is ordered list item 1</li>
+      <li>this is ordered list item 2</li>
+      <li>this is ordered list item 3</li>
+      <li>this is ordered list item 4</li>
+      <li>this is ordered list item 5</li>
+    </ol>
+
+   </div>
+
+
+
+   <div class="twoContainer">
+       <table >
+            <thead >
+    <tr>
+
+                <th colspan="3">2025</th>
+       
+            </tr>
+
+            </thead>
+        <tbody>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2 " rowspan="2">data</td>
+                <td></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr><td></td>
+            <td></td>
+        <td></td></tr>
+        </tbody>
+        </table>
+
+
+    <table>
+        <tr>
+            <th colspan="2">name</th>
+            <th>email</th>
+            <th>number</th>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>test@gmail.com</td>
+            <td>1234567890</td>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>smith</td>
+            <td>hello@gmail.com</td>   
+            <td>1234567890</td>
+        </tr>
+    </table>
+   </div>
+
+
+   <table class="tbl">
+    <tr>
+        <th colspan="2">name</th>
+        <th>email</th>
+        <th>number</th>
+    </tr>
+    <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>
+            <ul>
+                <li>1234567890</li>
+                <li>1234567890</li>
+                <li>1234567890</li>
+            </ul>
+        </td>
+        <td>1234567890</td>
+    </tr>
+    <tr>
+        <td>John</td>
+        <td>smith</td>
+        <td>
+            <ol>
+                <li>1234567890</li>
+                <li>1234567890</li>
+                <li>1234567890</li>
+            </ol>
+        </td>
+        <td>1234567890</td>
+    </tr>
+   </table>
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

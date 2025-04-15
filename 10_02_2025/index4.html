@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Different types of input fields</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: #f1f1f1;
+        }
+        form{
+            display: flex;
+            padding: 20px;
+            flex-direction: column;
+            width: 20%;
+        }
+
+        input{
+            margin: 4px;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        input[type="submit"], input[type="reset"]{
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover, input[type="reset"]:hover{
+            background-color: #45a049   ;
+        }
+
+        input[type="color"]{
+            padding: 0;
+            border-radius: 2px;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+
+        tr, th, td{
+            border: 1px solid black;
+            padding: 8px;
+        }
+        </style>
+    
+</head>
+<body>
+    <form action="" method="get">
+        
+        <input type="hidden" name="hidden" value="this is a hidden field"/>
+        
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" placeholder="enter your name here"/><br>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="enter your email here"/><br>
+        <br>
+        <label for="number">Number:</label>
+        <input type="number" name="number" id="number" placeholder="enter your number here"/><br>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" placeholder="enter your password here"/><br>
+        <br>
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date"/><br>
+        <br>
+        <label for="time">Time:</label>
+        <input type="time" name="time" id="time"/><br>
+        <br>
+        <label for="color">Color:</label>
+        <input type="color" name="color" id="color"/><br>
+        <br>
+        <label for="gender" >Gender</label>
+<span>
+
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">male</label>
+    
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">female</label>
+    
+</span>
+
+<br><br>
+        <table>
+            <thead>
+    <tr>
+
+                <th colspan="3">2025</th>
+       
+            </tr>
+
+            </thead>
+        <tbody>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2 " rowspan="2">data</td>
+                <td></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr><td></td>
+            <td></td>
+        <td></td></tr>
+        </tbody>
+        </table>
+        <br><br>
+<span>
+
+    <label for="hobbies">Hobbies:</label>
+    <br>
+    
+    <input type="checkbox" name="hobbies" id="chess" value="chess"/>
+    <label for="chess">Chess</label>
+    
+    <input type="checkbox" name="hobbies" id="coding" value="coding"/>
+    <label for="coding">Coding</label>
+    <input type="checkbox" name="hobbies" id="play" value="play"/>
+    <label for="play">Playing</label>
+    
+</span>
+        
+        <br><br>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <label for="range">Range:</label>
+        <input type="range" name="range" id="range" min="0" max="100" value="69"/><br>
+        <br>
+        <label for="file">File:</label>
+        <input type="file" name="file" id="file" accept="image/png" /><br>
+        <br>
+        <label for="submit">Submit:</label>
+        <input type="submit" value="submit"/>
+        <br>
+        <label for="reset">Reset:</label>
+        <input type="reset" value="reset"/>
+        <br>
+
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LuckyGame</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: linear-gradient(to right, #1e3c72, #2a5298);
+        color: white;
+        text-align: center;
+        padding: 50px 0;
+      }
+      .container {
+        width: 90%;
+        max-width: 500px;
+        margin: auto;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      h1, h2 {
+        margin-bottom: 15px;
+      }
+      #balance, #betAmount {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+      .btn {
+        padding: 12px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        background-color: #ff9800;
+        color: white;
+        transition: all 0.3s;
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+      }
+      .btn:hover {
+        background-color: #e68900;
+        transform: scale(1.05);
+      }
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .transactions {
+        max-height: 200px;
+        overflow-y: auto;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 15px;
+      }
+      .transactions ul {
+        list-style: none;
+        padding: 0;
+      }
+      .transactions li {
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+      }
+      .won {
+        background-color: #28a745;
+      }
+      .lost {
+        background-color: #dc3545;
+      }
+      .test-mode {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.15);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Lucky Game</h1>
+      <div id="balance">Balance: $1000</div>
+      <div id="betAmount">Bet Amount: $0</div>
+      <h2>Place Your Bet</h2>
+      <input type="number" id="betInput" placeholder="Enter bet amount" />
+      <button class="btn" onclick="placeBet()">Place Bet</button>
+      <button class="btn" onclick="Allin()">All in</button>
+      <h2>Transaction History</h2>
+      <div class="transactions">
+        <ul id="transactionList"></ul>
+      </div>
+      <div class="test-mode">
+        <label for="testMode">Gamble Mode:</label>
+        <input type="checkbox" id="testMode" onchange="toggleTestMode()" />
+        <br /><br />
+        <label for="gamblersBet">If win (Multiplier):</label>
+        <input type="number" id="gamblersBet" placeholder="Multiply bet if win" />
+        <br /><br />
+        <label for="gamblersBetLose">If lose (Multiplier):</label>
+        <input type="number" id="gamblersBetLose" placeholder="Multiply bet if lose" />
+      </div>
+    </div>
+    <script>
+      let betHistory = [];
+      let userBalance = 1000;
+      let betAmount = 0;
+      let testMode = false;
+      
+      const toggleTestMode = () => { testMode = !testMode; };
+      function Allin() {
+        document.getElementById("betInput").value = userBalance;
+        placeBet();
+      }
+      function placeBet() {
+        const amount = parseFloat(document.getElementById("betInput").value);
+        if (isNaN(amount) || amount <= 0 || amount > userBalance) {
+          alert("Invalid bet amount.");
+          return;
+        }
+        betAmount = amount;
+        userBalance -= betAmount;
+        document.getElementById("balance").innerText = `Balance: $${userBalance.toFixed(3)}`;
+        multiplyBet();
+      }
+      function multiplyBet() {
+        let multiplier = Math.random() < 0.4 ? 1 + Math.random() * 3 : Math.random() * 0.8;
+        multiplier = multiplier < 1 ? 0 : multiplier;
+        let amountWon = betAmount * multiplier;
+        userBalance += amountWon;
+        document.getElementById("balance").innerText = `Balance: $${userBalance.toFixed(3)}`;
+        addTransaction(betAmount, amountWon, multiplier);
+      }
+      function addTransaction(bet, won, multi) {
+        const li = document.createElement("li");
+        li.innerHTML = `Bet: $${bet} | Multiplier: x${multi.toFixed(2)} | Won: $${won.toFixed(2)}`;
+        li.classList.add(multi > 1 ? "won" : "lost");
+        document.getElementById("transactionList").appendChild(li);
+      }
+    </script>
+  </body>
+</html>

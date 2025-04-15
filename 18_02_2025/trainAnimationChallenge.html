@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Train Animation</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                user-select: none;
+                background-color: dimgray;
+            }
+
+            .scene {
+                width: 1000px;
+                height: 500px;
+                background-color: #f0f0f0;
+                position: relative;
+                display: flex;
+                justify-content: center;
+
+                border-radius: 20px;
+                overflow: hidden;
+                align-items: center;
+                box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .tracks {
+                width: 90px;
+                height: 100%;
+                position: absolute;
+                background-color: #f0f0f0;
+                background-image: linear-gradient(
+                    0deg,
+                    #f0f0f0 50%,
+                    #8c8c8c 50%
+                );
+                background-size: 150px 10px;
+                background-repeat: repeat-y;
+                /* border: 1px red solid; */
+                background-position: center;
+                z-index: 1;
+            }
+
+            .track-lines {
+                width: 88px;
+                height: 102%;
+                position: absolute;
+                border: 10px solid rgb(75, 75, 75);
+                background-position: center;
+                z-index: 1;
+            }
+
+            .station-platform {
+                width: 150px;
+                height: 60%;
+                margin-top: 60px;
+                position: absolute;
+                background-color: #7f7f7f;
+                z-index: 0;
+            }
+            .depart-btn {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                z-index: 2;
+                background-color: #f0f0f0;
+                padding: 10px;
+                border-radius: 10px;
+                cursor: pointer;
+                font-family: "Trebuchet MS", "Lucida Sans Unicode",
+                    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+                background-color: mediumspringgreen;
+                animation: displayButton 7s linear forwards; 
+            }
+
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            input[type="checkbox"] + label::after {
+                content: "Departed";
+                position: absolute;
+                top: -50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: thistle;
+                padding: 10px;
+                border-radius: 10px;
+                color: black;
+                font-size: 1rem;
+                opacity: 0;
+                transition: all 0.3s ease-in-out;
+            }
+
+            input[type="checkbox"]:checked + label::after {
+                top: -55%;
+                opacity: 1;
+            }
+
+            input[type="checkbox"]:checked ~ .train {
+                animation: depart 7s linear;
+                bottom: 110%;
+            }
+
+            .train {
+                width: 95px;
+                height: 350px;
+                background-color: #ea5313;
+                position: absolute;
+                z-index: 3;
+                bottom: 10%;
+                border-radius: 10px;
+                box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+                animation: train 7s linear;
+                animation-fill-mode: forwards;
+            }
+            .train::after {
+                content: "";
+                width: 12px;
+                height: 12px;
+                background-color: rgb(223, 173, 57);
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                box-shadow: 0 0 15px 8px rgba(240, 218, 20, 0.717);
+                animation: blink 1s ease-in-out infinite;
+            }
+
+            .windows {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                /* padding: 10px; */
+
+                box-sizing: border-box;
+            }
+            .window {
+                background-color: #a6aeb7;
+                width: 80%;
+                height: 28px;
+                border-radius: 3px;
+            }
+
+            .window:first-of-type {
+                background-color: #8f9193;
+                width: 83%;
+                height: 33px;
+                border-radius: 3px;
+            }
+
+            @keyframes displayButton {
+                0% {
+                    opacity: 0;
+                    display: none;
+                }
+                99% {
+                    opacity: 0;
+                    display: none;
+                }
+                100% {
+                    opacity: 1;
+                    display: block;
+                }
+            }
+
+            @keyframes train {
+                0% {
+                    bottom: -50%;
+                }
+                25% {
+                    bottom: -10%;
+                }
+                50% {
+                    bottom: 0%;
+                }
+                100% {
+                    bottom: 10%;
+                }
+            }
+
+            @keyframes blink {
+                0%,
+                100% {
+                    background-color: rgb(223, 173, 57);
+                    box-shadow: 0 0 15px 8px rgba(240, 218, 20, 0.717);
+                }
+                50% {
+                    background-color: rgb(240, 218, 20);
+                    box-shadow: 0 0 10px 5px rgba(223, 173, 57, 0.717);
+                }
+            }
+
+            @keyframes depart {
+                0% {
+                    bottom: 10%;
+                }
+                25% {
+                    bottom: 30%;
+                }
+                50% {
+                    bottom: 50%;
+                }
+                100% {
+                    bottom: 110%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="scene">
+            <div class="tracks"></div>
+            <div class="track-lines"></div>
+            <div class="station-platform"></div>
+            <input type="checkbox" id="depart" class="depart-btn" />
+            <label for="depart" class="depart-btn">Depart Train</label>
+            <div class="train">
+                <div class="windows">
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

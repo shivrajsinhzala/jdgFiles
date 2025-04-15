@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Layout using grid</title>
+    <style> 
+        *{
+            box-sizing: border-box;
+            margin:0;
+            padding: 0;
+        }
+        body{
+            display: grid;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            grid-template-areas: 
+            "h h h h h h h h"
+            "n m m m m m m a"
+            "n m m m m m m a"
+            "n m m m m m m a"
+            "n m m m m m m a"
+            "n m m m m m m a"
+            "n m m m m m m a"
+            "f f f f f f f f"
+        }
+        header{
+            grid-area: h;
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav{
+            grid-area: n;
+            background-color: #f4f4f4;
+            padding: 1rem;
+        }
+        main{
+            grid-area: m;
+            background-color: #f4f4f4;
+            padding: 1rem;
+        }
+        aside{
+            grid-area: a;
+            background-color: #f4f4f4;
+            padding: 1rem;
+        }
+        footer{
+            grid-area: f;
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .a{
+            grid-area: p;
+            background-color: #333;
+            color: #f4f4f4;
+            padding: 1rem;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>header</header>
+    <main>main</main>
+    <nav>nav</nav>
+
+    <aside>aside</aside>
+    <footer>footer</footer>
+      
+</html>

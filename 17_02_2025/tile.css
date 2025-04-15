@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    background: url(https://tileswale.com/cdn-cgi/imagedelivery/mzSuEo-CuZj22GZ2Ldj31w/ab2b82c4-cf55-4f45-d609-3da2523c4a00/public);
+    text-align: center;
+}

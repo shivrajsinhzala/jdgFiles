@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bento Box Layout</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                height: 100%;
+            }
+
+            body {
+                min-height: 100vh;
+                text-align: center;
+                text-transform: capitalize;
+                overflow: hidden;
+                padding: 2rem;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                height: 95%;
+                width: 100%;
+                /* gap: 1rem; */
+                border-radius: 1.5rem;
+            }
+
+            .upperBento,
+            .lowerBento {
+                flex: 1;
+                display: flex;
+                min-height: 50%;
+                gap: 1rem;
+                padding: 1rem;
+                border: black 1px solid;
+                background-color: tomato;
+                border-radius: 0.5rem;
+            }
+
+            .upperBento{
+                border-radius:  1rem 1rem 0 0;
+                border-bottom: 0;
+                padding-bottom:0 ;
+            }
+
+            .lowerBento{
+                /* padding-top: ; */
+                border-top: 0;
+                border-radius: 0 0 1rem 1rem;
+            }
+
+            .box-container {
+               flex: 1;
+                display: flex;
+                flex-direction: column;
+                /* background-color: #333; */
+                gap: 1rem;
+                border: 1px black solid;
+                color: white;
+                padding: 1rem;
+                text-align: left;
+                height: 100%;
+
+                border-radius: 0.25rem;
+            }
+            .top {
+                flex: 2 ;
+                /* background-color: #333; */
+            }
+
+            .bottom1,
+            .bottom2 {
+                flex: 1;
+            }
+            .content-box {
+                background-color: #333;
+                color: white;
+                border: 1px black solid;
+                padding: 1rem;
+                text-align: left;
+                border-radius: 0.25rem;
+            }
+
+            .bottom-container {
+                display: flex;
+                gap: 1rem;
+                flex: 1;
+            }
+            .upperBento .left{
+                flex: 2;    
+                /* flex-basis: 50%; */
+            }
+            .lowerBento .left{
+                flex: 1;
+                /* flex-basis: 40%; */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="upperBento">
+                <div class="box-container left">
+                    <div class="content-box top"></div>
+                </div>
+                <div class="box-container right">
+                    <div class="content-box top"></div>
+                    <div class="bottom-container">
+                        <div class="content-box bottom1"></div>
+                        <div class="content-box bottom2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="lowerBento">
+                <div class="box-container left">
+                    <div class="content-box top"></div>
+                    <div class="bottom-container">
+                        <div class="content-box bottom1"></div>
+                        <div class="content-box bottom2"></div>
+                    </div>
+                </div>
+                <div class="box-container right">
+                    <div class="content-box top"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

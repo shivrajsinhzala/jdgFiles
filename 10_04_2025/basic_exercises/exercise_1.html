@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>current date and time</title>
+  </head>
+  <body>
+    <p id="day"></p>
+    <p id="time"></p>
+
+    <script>
+        const date = new Date(); 
+        const day = date.getDay();
+        const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+        const time = date.getHours() + ampm + ":" + date.getMinutes() + ":" + date.getSeconds();
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        document.getElementById("day").innerText = days[day];
+        document.getElementById("time").innerText = time;
+
+
+
+    </script>
+  </body>
+</html>

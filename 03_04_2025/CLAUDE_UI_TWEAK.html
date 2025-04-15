@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LuckyGame</title>
+    <style>
+      :root {
+        --primary: #6366f1;
+        --primary-hover: #4f46e5;
+        --primary-active: #4338ca;
+        --success: #10b981;
+        --danger: #ef4444;
+        --dark: #1e293b;
+        --light: #f8fafc;
+        --card: #ffffff;
+        --border: #e2e8f0;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f1f5f9;
+        color: var(--dark);
+        line-height: 1.6;
+        padding: 20px;
+      }
+      
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      
+      .header h1 {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+      
+      .game-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+      }
+      
+      .stat-card {
+        background-color: var(--card);
+        border-radius: 10px;
+        padding: 20px;
+        flex: 1;
+        margin: 0 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        text-align: center;
+      }
+      
+      .stat-card .label {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin-bottom: 5px;
+      }
+      
+      .stat-card .value {
+        font-size: 1.8rem;
+        font-weight: 600;
+      }
+      
+      .bet-section {
+        background-color: var(--card);
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+      
+      .bet-section h2 {
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: var(--dark);
+        text-align: center;
+      }
+      
+      .bet-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .input-group {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 20px;
+      }
+      
+      input[type="number"] {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+      
+      input[type="number"]:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+      }
+      
+      .button-group {
+        display: flex;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+      }
+      
+      button {
+        flex: 1;
+        padding: 12px 20px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      
+      .btn-primary {
+        background-color: var(--primary);
+        color: white;
+      }
+      
+      .btn-primary:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-2px);
+      }
+      
+      .btn-primary:active {
+        background-color: var(--primary-active);
+        transform: translateY(0);
+      }
+      
+      .btn-danger {
+        background-color: var(--danger);
+        color: white;
+      }
+      
+      .btn-danger:hover {
+        background-color: #dc2626;
+        transform: translateY(-2px);
+      }
+      
+      .btn-danger:active {
+        background-color: #b91c1c;
+        transform: translateY(0);
+      }
+      
+      .history-section {
+        background-color: var(--card);
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+      
+      .history-section h2 {
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: var(--dark);
+        text-align: center;
+      }
+      
+      #transactionList {
+        max-height: 255px;
+        overflow-y: auto;
+        border-radius: 8px;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        padding: 5px;
+      }
+      
+      #transactionList li {
+        padding: 15px;
+        border-radius: 8px;
+        transition: transform 0.2s;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      
+      #transactionList li.won {
+        background-color: rgba(16, 185, 129, 0.1);
+        border-left: 4px solid var(--success);
+      }
+      
+      #transactionList li.lost {
+        background-color: rgba(239, 68, 68, 0.1);
+        border-left: 4px solid var(--danger);
+      }
+      
+      #transactionList li:hover {
+        transform: translateX(5px);
+      }
+      
+      #transactionList li .transaction-item {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      #transactionList li .transaction-item .label {
+        font-size: 0.75rem;
+        color: #64748b;
+      }
+      
+      #transactionList li .transaction-item .value {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      
+      .test-mode {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: var(--card);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 250px;
+      }
+      
+      .test-mode-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+        margin-left: 10px;
+      }
+      
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 24px;
+      }
+      
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+      }
+      
+      input:checked + .slider {
+        background-color: var(--primary);
+      }
+      
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+      
+      .test-mode-content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .test-mode-content label {
+        font-size: 0.85rem;
+        margin-bottom: 3px;
+      }
+      
+      .test-mode-content input {
+        padding: 8px;
+        font-size: 0.9rem;
+      }
+      
+      .test-mode-notice {
+        font-size: 0.75rem;
+        color: #64748b;
+        margin-top: 10px;
+        text-align: center;
+        font-style: italic;
+      }
+      
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        backdrop-filter: blur(3px);
+      }
+      
+      .popup-content {
+        background-color: var(--card);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+      }
+      
+      .popup-title {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: var(--danger);
+      }
+      
+      .popup-text {
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+      }
+      
+      @media (max-width: 768px) {
+        .game-stats {
+          flex-direction: column;
+          gap: 15px;
+        }
+        
+        .stat-card {
+          margin: 0;
+        }
+        
+        .button-group {
+          flex-direction: column;
+        }
+        
+        #transactionList li {
+          grid-template-columns: 1fr;
+        }
+        
+        .test-mode {
+          position: static;
+          margin: 20px auto;
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Lucky Game</h1>
+      </div>
+      
+      <div class="game-stats">
+        <div class="stat-card">
+          <div class="label">Your Balance</div>
+          <div class="value" id="balance">$1000</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Current Bet</div>
+          <div class="value" id="betAmount">$0</div>
+        </div>
+      </div>
+      
+      <div class="bet-section">
+        <h2>Place Your Bet</h2>
+        <div class="bet-controls">
+          <div class="input-group">
+            <input type="number" id="betInput" placeholder="Enter bet amount" />
+          </div>
+          <div class="button-group">
+            <button class="btn-primary" onclick="placeBet()">Place Bet</button>
+            <button class="btn-danger" onclick="Allin()">All In</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="history-section">
+        <h2>Transaction History</h2>
+        <ul id="transactionList">
+          <!-- Transaction history will be populated here -->
+        </ul>
+      </div>
+    </div>
+    
+    <div class="test-mode">
+      <div class="test-mode-header">
+        <span>Gamble Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="testMode" onchange="toggleTestMode()">
+          <span class="slider"></span>
+        </label>
+      </div>
+      
+      <div class="test-mode-content">
+        <label for="gamblersBet">Win Multiplier</label>
+        <input type="number" id="gamblersBet" placeholder="Multiply bet if win" />
+        
+        <label for="gamblersBetLose">Loss Multiplier</label>
+        <input type="number" id="gamblersBetLose" placeholder="Multiply bet if lose" />
+        
+        <div class="test-mode-notice">
+          (Enable Gamble mode to use this feature)
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let betHistory = [];      
+      let transactionHistory = [];
+      let testMode = false;
+      const toggleTestMode = () => {
+        testMode = !testMode;
+      };
+
+      function Allin() {
+        const maxBet = userBalance;
+        document.getElementById("betInput").value = maxBet;
+        placeBet();
+      }
+
+      function test(betAmount, multiplier) {
+        const gamblersBet = parseFloat(document.getElementById("gamblersBet").value);
+        const gamblersBetLose = parseFloat(document.getElementById("gamblersBetLose").value);
+
+        if (multiplier < 1) {
+          document.getElementById("betInput").value = betAmount * gamblersBetLose;
+        } else {
+          document.getElementById("betInput").value = betAmount * gamblersBet;
+        }
+      }
+
+      let userBalance = 1000;
+      let betAmount = 0;
+
+      const transactionList = document.getElementById("transactionList");
+
+      function placeBet() {
+        const amount = parseFloat(document.getElementById("betInput").value);
+        if (isNaN(amount) || amount <= 0) {
+          alert("Please enter a valid bet amount.");
+          return;
+        }
+
+        if (amount > userBalance) {
+          alert("Insufficient balance!");
+          return;
+        }
+
+        betAmount = amount;
+        userBalance -= betAmount;
+        document.getElementById("balance").innerText = "$" + userBalance.toFixed(2);
+        document.getElementById("betAmount").innerText = "$" + betAmount.toFixed(2);
+
+        multiplyBet();
+      }
+
+      function multiplyBet() {
+        let multiplier;
+
+        // Reduced win chance from 50% to 40% (0.4 instead of 0.5)
+        if (Math.random() < 0.4) {
+          // Now 40% chance to win
+          // Smaller win multiplier range (1-4 instead of 1-5)
+          multiplier = 1 + Math.random() * 3; // Multiplier between 1 and 4
+        } else {
+          // Increased loss probability (60% chance)
+          multiplier = Math.random() * 0.8; // Multiplier between 0 and 0.8
+        }
+
+        // Rest of the function remains the same...
+        if (multiplier < 1) {
+          multiplier = 0;
+        }
+
+        let amountWon = betAmount * multiplier;
+
+        if (amountWon < 0) {
+          amountWon = 0;
+        }
+
+        userBalance += amountWon;
+
+        document.getElementById("balance").innerText = "$" + userBalance.toFixed(2);
+        document.getElementById("betAmount").innerText = "$" + betAmount.toFixed(2);
+
+        addTransaction(betAmount, amountWon, multiplier);
+        if (testMode) {
+          test(betAmount, multiplier);
+        }
+        looser();
+      }
+
+      function addTransaction(betAmount, amountWon, multiplier) {
+        betHistory.push({
+          betAmount: betAmount,
+          amountWon: amountWon,
+          multiplier: multiplier,
+        });
+
+        const transactionList = document.getElementById("transactionList");
+        const li = document.createElement("li");
+        
+        li.innerHTML = `
+          <div class="transaction-item">
+            <span class="label">Bet Amount</span>
+            <span class="value">$${betAmount.toFixed(2)}</span>
+          </div>
+          <div class="transaction-item">
+            <span class="label">Multiplier</span>
+            <span class="value">x${multiplier.toFixed(2)}</span>
+          </div>
+          <div class="transaction-item">
+            <span class="label">Amount Won</span>
+            <span class="value">$${amountWon.toFixed(2)}</span>
+          </div>
+        `;
+        
+        if (multiplier > 1) {
+          li.classList.add("won");
+        } else {
+          li.classList.add("lost");
+        }
+        
+        transactionList.appendChild(li);
+        li.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+        localStorage.setItem(
+          "transactionHistory",
+          JSON.stringify(transactionList.innerHTML)
+        );
+
+        const transactionHistory = JSON.parse(
+          localStorage.getItem("transactionHistory")
+        );
+
+        transactionList.innerHTML = transactionHistory || "";
+      }
+
+      function looser() {
+        if (userBalance <= 1) {
+          userBalance = 1000; // Reset balance to $1000
+          document.getElementById("balance").innerText = "$" + userBalance.toFixed(2);
+          document.getElementById("betAmount").innerText = "$0";
+          document.getElementById("transactionList").innerHTML = ""; // Clear transaction history
+
+          const popup = document.createElement("div");
+          popup.className = "popup-overlay";
+          popup.innerHTML = `
+            <div class="popup-content">
+              <h2 class="popup-title">Game Over!</h2>
+              <p class="popup-text">You have lost all your money!</p>
+              <button class="btn-primary" onclick="location.reload()">Play Again</button>
+            </div>
+          `;
+          document.body.appendChild(popup);
+        }
+      }
+    </script>
+  </body>
+</html>

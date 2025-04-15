@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "Arial", sans-serif;
+                background-color: #f4f4f4;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            .grid {
+                background-color: white;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+                padding: 40px;
+            }
+            .card {
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            }
+            .card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .card__content {
+                padding: 20px;
+            }
+
+            .card__title {
+                font-size: 24px;
+                font-weight: 700;
+                margin-bottom: 10px;
+                
+            }
+
+            .card__text {
+                font-size: 16px;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            .card__footer {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                border-radius: 5px;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .button:hover {
+                background-color: #0056b3;
+                transform: scale(1.1);
+                box-shadow: 0px 1rem 3rem rgba(0, 0, 0, 0.1);
+            }
+            .button:active{
+                transform: scale(1);
+            }
+
+            header{
+                margin-top: 5%;
+                text-align: center;
+                padding: 20px;
+                font-size: 24px;
+                font-weight: 700;
+                color: white;
+                background-color: #007bff;
+                border-radius: 20px 20px 0 0 ;
+            }
+            footer{
+                text-align: center;
+                padding: 20px;
+                font-size: 16px;
+                font-weight: 700;
+                color: white;
+                background-color: #333;
+                border-radius: 0 0 20px 20px;
+            }
+            footer a{
+                color: #007bff;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>Welcome to the Just Digital Gurus Interactive Page!</header>
+
+            <div class="grid">
+                <div class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                    />
+                    <div class="card__content">
+                        <h2 class="card__title">Latest Tech Trends</h2>
+                        <p class="card__text">
+                            Stay updated with the latest advancements in web
+                            development, AI, and software engineering.
+                        </p>
+                    </div>
+                    <div class="card__footer">
+                        <a href="#" class="button">Read More</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                    />
+                    <div class="card__content">
+                        <h2 class="card__title">Creative Design Ideas</h2>
+                        <p class="card__text">
+                            Explore stunning UI/UX inspirations to elevate your
+                            digital experiences.
+                        </p>
+                    </div>
+                    <div class="card__footer">
+                        <a href="#" class="button">Discover</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                    />
+                    <div class="card__content">
+                        <h2 class="card__title">Code Like a Pro</h2>
+                        <p class="card__text">
+                            Master coding skills with our expert tips, tricks,
+                            and tutorials.
+                        </p>
+                    </div>
+                    <div class="card__footer">
+                        <a href="#" class="button">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                    />
+                    <div class="card__content">
+                        <h2 class="card__title">Grow Your Business</h2>
+                        <p class="card__text">
+                            Effective strategies to scale your business and
+                            achieve remarkable growth.
+                        </p>
+                    </div>
+                    <div class="card__footer">
+                        <a href="#" class="button">Get Started</a>
+                    </div>
+                </div>  <div class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                    />
+                    <div class="card__content">
+                        <h2 class="card__title">Grow Your Business</h2>
+                        <p class="card__text">
+                            Effective strategies to scale your business and
+                            achieve remarkable growth.
+                        </p>
+                    </div>
+                    <div class="card__footer">
+                        <a href="#" class="button">Get Started</a>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                © 2025 <a href="#">Just Digital Gurus</a>. All rights reserved.
+            </footer>
+        </div>
+    </body>
+</html>

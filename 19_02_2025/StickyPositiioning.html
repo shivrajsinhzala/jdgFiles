@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Advanced CSS</title>
+        <style>
+            :root {
+                --primary-color: #2563eb;
+                --secondary-color: #7c3aed;
+                --spacing: 1rem;
+                --card-border-radius: 8px;
+            }
+
+            body {
+                font-family: system-ui, -apple-system, sans-serif;
+                line-height: 1.5;
+                margin: 0;
+                background-color: dimgray;
+                padding: var(--spacing);
+            }
+            .multi-column {
+                column-count: 3;
+                column-gap: var(--spacing);
+                padding: var(--spacing);
+            }
+
+            .multi-column p {
+                margin: 0 0 var(--spacing);
+                border: 1px black dotted;
+                break-inside: avoid;
+            }
+
+            .aspect-box {
+                padding: var(--spacing);
+                aspect-ratio: 11/2;
+                background: var(--primary-color);
+                border-radius: var(--card-border-radius);
+                margin: var(--spacing) 0;
+            }
+
+            .sticky-header {
+                position: sticky;
+                top: 0;
+                background: white;
+                padding: var(--spacing);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 10;
+            }
+
+            .filter-gallery {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: var(--spacing);
+                margin: var(--spacing) 0;
+            }
+
+            .filter-item {
+                padding: 10px;
+                /* box-sizing: border-box; */
+                aspect-ratio: 1;
+                background: var(--secondary-color);
+                border-radius: var(--card-border-radius);
+            }
+
+            .blur {
+                filter: blur(5px);
+            }
+            .brightness {
+                filter: brightness(1.5);
+            }
+            .contrast {
+                filter: contrast(150%);
+            }
+            .grayscale {
+                filter: grayscale(100%);
+            }
+
+            .blend-container {
+                position: relative;
+                height: 200px;
+                width: fit-content;
+                margin: var(--spacing) 0;
+                margin: 0 auto;
+            }
+
+            .blend-base {
+                position: absolute;
+                left:-40px;
+                width: 150px;
+                height: 150px;
+                background: var(--primary-color);
+                transform: translateX(-50%);
+                border-radius: 50%;
+            }
+
+            .blend-overlay {
+                position: absolute;
+                left: 40px; 
+                width: 150px;
+                height: 150px;
+                background: var(--secondary-color);
+                border-radius: 50%;
+                mix-blend-mode: multiply;
+                transform: translateX(-50%);
+            }
+
+            .interactive-card {
+                padding: var(--spacing);
+                background: white;
+                border-radius: var(--card-border-radius);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .interactive-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="sticky-header">
+            <h1>Advanced CSS Demo</h1>
+        </div>
+
+        <div class="multi-column">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Explicabo praesentium optio obcaecati autem mollitia corrupti
+                rem accusamus. Dolor ut, distinctio corporis expedita doloremque
+                molestiae impedit, officiis temporibus, eligendi dolorem rerum.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste,
+                rem.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id
+                corporis soluta itaque quaerat labore architecto?
+            </p>
+            <p>
+                The spacing between columns is controlled by our custom CSS
+                variable.
+            </p>
+        </div>
+
+        <div class="aspect-box">
+            aspect ratio 11/2
+        </div>
+
+        <div class="filter-gallery">
+        
+            <div class="filter-item blur"></div>
+            <div class="filter-item brightness">Brightness</div>
+            <div class="filter-item contrast">Contrast</div>
+            <div class="filter-item grayscale">Grayscale</div>
+        </div>
+
+        <div class="blend-container">
+            <div class="blend-base"></div>
+            <div class="blend-overlay"></div>
+        </div>
+
+        <div class="interactive-card">
+            <h2>Interactive Card</h2>
+            <p>
+                Hover over me.
+            </p>
+        </div>
+    </body>
+</html>

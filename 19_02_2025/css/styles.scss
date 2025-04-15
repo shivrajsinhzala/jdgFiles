@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@mixin flexAlignCenter{
+    display: flex;
+    align-items: center
+}
+
+$primaryColor: #333;
+$secondaryColor: #666;
+$backgroundColor: #f4f4f4;
+$borderRadius: 5px;
+$padding: 10px;
+$textColor: #222;
+$fontStack: "poppins", Arial, sans-serif;
+
+body {
+    font-family: $fontStack;
+    background-color: $backgroundColor;
+    color: $textColor;
+    padding: $padding;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    header{
+        background-color: $primaryColor;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: 0 0 $borderRadius $borderRadius;
+        margin-bottom: 10px;
+        h1{
+            margin: 0;
+        }
+        p{
+            margin: 0;
+        }
+    }
+
+    main{
+        @include flexAlignCenter;
+        justify-content: center;
+
+        height: 80vh;
+        .container{
+            background-color: white;
+            border-radius: $borderRadius;
+            padding: 20px;
+            height: 90%;
+            width: 90%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            @include flexAlignCenter;
+    
+            justify-content: space-around;
+            // flex-direction: column;
+            h2{
+                margin-top: 0;
+            }
+            p{
+                margin-bottom: 0;
+            }
+            .box{
+                width: 32%;
+                height: 90%;
+                background-color: $secondaryColor;
+                border-radius: calc($borderRadius * 2.5);
+                padding: 10px;
+                box-sizing: border-box;
+                color: white;
+                display: grid;
+                font-size: 2rem;
+                place-content: center;
+                transition: all 0.9s;
+                &:hover{
+                    background-color: darken($secondaryColor, 20%);
+                    transform: rotatey(180deg);
+                }
+
+            }
+        }
+
+    }
+
+    footer{
+        background-color: $primaryColor;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: $borderRadius $borderRadius 0 0;
+        margin-top: 10px;
+    }
+}

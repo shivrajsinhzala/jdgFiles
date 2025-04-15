@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Tag Demo</title>
+  
+</head>
+<body>
+    <video id="myVideo" controls width="1280" height="720" preload="auto">
+        <source src="SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+   
+        <source src="https://file-examples.com/storage/fe21422a6d67aa28993b797/2017/11/file_example_OOG_5MG.ogg" type="video/ogg">
+    </video>
+
+
+
+
+      <script>
+        const video = document.getElementById('myVideo');
+
+// Enable volume (set to maximum)
+// Enable volume (set to maximum)
+// Enable volume (set to maximum)
+function startVideo() {
+  video.play();
+}
+
+window.onload(() => {
+    startVideo();
+})
+    </script>
+</body>
+</html>

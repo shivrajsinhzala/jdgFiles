@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link id="linkElement" rel="stylesheet" href="tile2.css" />
+  </head>
+  <body>
+    <h1 id="desc" style="font-size: 3rem">
+      This is the background image without repeating image
+    </h1>
+    <br />
+
+    <div>
+      <h2>Change Background Position using this buttons</h2>
+      <button onclick="changeBackgroundPosition('top left')">Top Left</button>
+      <button onclick="changeBackgroundPosition('top center')">
+        Top Center
+      </button>
+      <button onclick="changeBackgroundPosition('top right')">Top Right</button>
+
+      <br />
+      <button onclick="changeBackgroundPosition('center left')">
+        Center Left
+      </button>
+      <button onclick="changeBackgroundPosition('center')">Center</button>
+      <button onclick="changeBackgroundPosition('center right')">
+        Center Right
+      </button>
+      <br />
+      <button onclick="changeBackgroundPosition('bottom left')">
+        Bottom Left
+      </button>
+      <button onclick="changeBackgroundPosition('bottom center')">
+        Bottom Center
+      </button>
+      <button onclick="changeBackgroundPosition('bottom right')">
+        Bottom Right
+      </button>
+    </div>
+    <div>
+        <h2>Change BAckground Size</h2>
+        <button onclick="document.body.style.backgroundSize = 'auto'">Auto</button>
+        <button onclick="document.body.style.backgroundSize = 'cover'">Cover</button>
+        <button onclick="document.body.style.backgroundSize = 'contain'">Contain</button>
+        <button onclick="document.body.style.backgroundSize = '100% 100%'">100% 100%</button>
+    </div>
+
+    <div>
+        <h2>Change background repeat</h2>
+        <button onclick="document.body.style.backgroundRepeat = 'repeat'">Repeat</button>
+        <button onclick="document.body.style.backgroundRepeat = 'no-repeat'">No Repeat</button>
+        <br>
+        <button onclick="document.body.style.backgroundRepeat = 'repeat-x'">Repeat in X Axis</button>
+        <button onclick="document.body.style.backgroundRepeat = 'repeat-y'">Repeat in Y Axis</button>
+    </div>
+    <br />
+
+    <div>
+        <h2>Change Background Attachment</h2>
+        <button onclick="document.body.style.backgroundAttachment = 'scroll'">Scroll</button>
+        <button onclick="document.body.style.backgroundAttachment = 'fixed'">Fixed</button>
+    </div>
+
+    <br>
+    <div>
+        <h2>Change Background Origin</h2>
+        <button onclick="document.body.style.backgroundOrigin = 'border-box'">Border Box</button>
+        <button onclick="document.body.style.backgroundOrigin = 'padding-box'">Padding Box</button>
+        <button onclick="document.body.style.backgroundOrigin = 'content-box'">Content Box</button>
+    </div>
+
+    <br>
+    <div>
+        <h2>set body height</h2>
+        <input type="number" id="height" placeholder="Enter height in vh">
+
+        <button onclick="document.body.style.height = document.getElementById('height').value + 'vh'">Set Height</button>
+    </div>
+    <script>
+      function changeBackgroundPosition(position) {
+        document.body.style.backgroundPosition = position;
+      }
+
+    </script>
+  </body>
+</html>

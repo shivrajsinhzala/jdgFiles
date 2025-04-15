@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple HTML Form</title>
+    <style>
+      .error {
+        color: red;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Sample Form</h2>
+    <form id="myForm" action="#" method="post" onsubmit="return validateForm()">
+      <label for="textInput">Text Input:</label>
+      <input
+        type="text"
+        id="textInput"
+        name="textInput"
+        placeholder="Enter some text"
+        required
+        pattern="[A-Za-z ]+"
+        title="Only letters and spaces are allowed."
+      /><br />
+      <span id="textInputError" class="error"></span><br /><br />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter password"
+        required
+        minlength="6"
+        title="Password must be at least 6 characters long."
+      /><br />
+      <span id="passwordError" class="error"></span><br /><br />
+
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+      /><br />
+      <span id="emailError" class="error"></span><br /><br />
+
+      <label for="number">Number:</label>
+      <input
+        type="number"
+        id="number"
+        name="number"
+        placeholder="Enter a number"
+        required
+        min="1"
+        max="100"
+        title="from 1 to 100 only"
+      /><br />
+      <span id="numberError" class="error"></span><br /><br />
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required /><br /><br />
+
+      <label for="radio">Select your gender:</label>
+      <input type="radio" id="option1" name="radio" value="Male" checked />
+      <label for="option1">Male</label>
+      <input type="radio" id="option2" name="radio" value="Female" />
+      <label for="option2">Female</label><br /><br />
+
+      <label for="file">Upload File:</label>
+      <input
+        type="file"
+        id="file"
+        name="file"
+        accept=".jpg,.jpeg,.png,.pdf"
+        required
+      /><br />
+      <span id="fileError" class="error"></span><br /><br />
+
+      <label for="textarea">Message:</label><br />
+      <textarea
+        id="textarea"
+        name="textarea"
+        rows="4"
+        cols="50"
+        placeholder="Enter your message here"
+        required
+      ></textarea><br />
+      <span id="textareaError" class="error"></span><br /><br />
+
+      <input type="checkbox" id="checkbox" name="checkbox" required />
+      <label for="checkbox">Accept Terms and conditions</label><br />
+      <span id="checkboxError" class="error"></span><br /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      function validateForm() {
+        let isValid = true;
+        clearErrors();
+
+        const textInput = document.getElementById("textInput");
+        if (!textInput.value.match(/[A-Za-z ]+/)) {
+          document.getElementById("textInputError").textContent = "Only letters and spaces are allowed.";
+          isValid = false;
+        }
+
+        const password = document.getElementById("password");
+        if (password.value.length < 6) {
+          document.getElementById("passwordError").textContent = "Password must be at least 6 characters long.";
+          isValid = false;
+        }
+
+        const email = document.getElementById("email");
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!email.value.match(emailPattern)) {
+          document.getElementById("emailError").textContent = "Please enter a valid email address.";
+          isValid = false;
+        }
+
+        const number = document.getElementById("number");
+        if (number.value < 1 || number.value > 100) {
+          document.getElementById("numberError").textContent = "Please enter a number between 1 and 100.";
+          isValid = false;
+        }
+
+        const file = document.getElementById("file");
+        if (!file.files.length) {
+          document.getElementById("fileError").textContent = "Please upload a file.";
+          isValid = false;
+        }
+
+        const textarea = document.getElementById("textarea");
+        if (textarea.value.trim() === "") {
+          document.getElementById("textareaError").textContent = "Message is required.";
+          isValid = false;
+        }
+
+        const checkbox = document.getElementById("checkbox");
+        if (!checkbox.checked) {
+          document.getElementById("checkboxError").textContent = "You must accept the terms and conditions.";
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      function clearErrors() {
+        const errorElements = document.querySelectorAll(".error");
+        errorElements.forEach((el) => (el.textContent = ""));
+      }
+    </script>
+  </body>
+</html>

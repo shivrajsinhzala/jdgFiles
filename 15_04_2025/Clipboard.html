@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>clipboard</title>
+  </head>
+  <body>
+    <button onclick="copy()">click to copy new content</button>
+    <br>
+    this was your clipboard content: <span id="clipboard">clipboard permission needed</span><br />
+    <br><br><br><br><br>
+    reload to see the clipboard content again<br />
+
+<script>
+
+
+
+
+
+      navigator.clipboard.readText().then((text) => {
+        document.getElementById("clipboard").innerText = text;
+      });
+      function copy() {
+        navigator.clipboard.writeText(Math.floor(Math.random()*1000000000));
+      }
+
+      
+    </script>
+  </body>
+</html>

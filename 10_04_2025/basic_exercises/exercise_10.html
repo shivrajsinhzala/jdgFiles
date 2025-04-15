@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>C to F Converter</title>
+</head>
+<body>
+    <h1>Convert Celsius to Fahrenheit</h1>
+    <label for="celsius">Celsius:</label>
+    <input type="number" id="celsius" placeholder="Enter Celsius" />
+    <button id="convert">Convert</button>
+    <p id="result"></p>
+
+    <script>
+        const convertButton = document.getElementById("convert");
+        convertButton.addEventListener("click", function() {
+            const celsius = document.getElementById("celsius").value;
+            const fahrenheit = (celsius * 9/5) + 32;
+            document.getElementById("result").innerText = `${celsius}°C is ${fahrenheit}°F`;
+        });
+    </script>
+</body>
+</html>
