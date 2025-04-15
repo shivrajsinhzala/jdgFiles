@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electricity Bill Calculator</title>
+    <style>
+         body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f1f5f9;
+        color: #222;
+        padding: 30px;
+        max-width: 600px;
+        margin: auto;
+      }
+
+      h1 {
+        text-align: center;
+        color: #0f172a;
+        margin-bottom: 20px;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid #cbd5e1;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        background-color: #2563eb;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #1d4ed8;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px;
+        background: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      li {
+        margin-bottom: 15px;
+        background-color: #f9fafb;
+        padding: 10px 15px;
+        border-left: 4px solid #3b82f6;
+        border-radius: 4px;
+      }
+
+      span {
+        font-weight: bold;
+        color: #1e293b;
+      }
+
+      p {
+        margin-top: 30px;
+        font-size: 18px;
+        text-align: center;
+      }
+
+      #totalBill {
+        font-size: 24px;
+        color: #10b981;
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
+    </style>
+  </head>
+  <body>
+      <h1>Electricity Bill Calculator</h1>
+      <input type="number" id="units" placeholder="Enter units consumed" />
+      <button id="calculate" onclick="generateBill()">Generate Bill</button>
+      
+      <p>Your total bill is <span id="totalBill">$0.00</span></p>
+    <p>Price Breakdown</p>
+
+    <ul>
+      <li>
+        for 0-50 units: $3.50
+        <br>
+        <div>Your units: <span id="smallUnitDisplay"> 0 </span></span> | Total
+        price: $<span id="smallPriceDisplay">0.00</div>
+      </li>
+      <li>
+        for 51-150 units: $4.00
+        <br>
+        <div>Your units: <span id="mediumUnitDisplay"> 0 </span></span> | Total
+        price: $<span id="mediumPriceDisplay">0.00</div>
+      </li>
+      <li>
+        for 151-250 units: $5.20 <br>
+        <div>Your units: <span id="largeUnitDisplay"> 0 </span></span> | Total
+        price: $<span id="largePriceDisplay">0.00</div>
+      </li>
+      <li>
+        for 251+ units: $6.50
+        <br>
+        <div>Your units: <span id="xlargeUnitDisplay"> 0 </span></span> | Total
+        price: $<span id="xlargePriceDisplay">0.00</div>
+      </li>
+    </ul>
+
+
+    <script>
+      const generateBill = () => {
+        const units = document.getElementById("units").value;
+        document.getElementById("totalBill").innerText = "$" + calculateBill(units);
+      };
+
+      const calculateBill = (units) => {
+        let rate = 0;
+
+        let xLargeCounter = 0;
+        let largeCounter = 0;
+        let mediumCounter = 0;
+        let smallCounter = 0;
+
+        for (units; units > 0; units--) {
+          if (units > 250) {
+            
+            xLargeCounter++;
+            rate += 6.5;
+          } else if (units > 150) {
+            largeCounter++;
+            rate += 5.2;
+          } else if (units > 50) {
+            mediumCounter++;
+            rate += 4.0;
+          } else {
+            smallCounter++;
+            rate += 3.5;
+          }
+        }
+
+        document.getElementById("smallUnitDisplay").innerText = smallCounter;
+        document.getElementById("smallPriceDisplay").innerText =
+          (smallCounter * 3.5).toFixed(2);
+        document.getElementById("mediumUnitDisplay").innerText =
+
+
+            mediumCounter;
+        document.getElementById("mediumPriceDisplay").innerText =
+            (mediumCounter * 4.0).toFixed(2);
+        document.getElementById("largeUnitDisplay").innerText =
+            largeCounter;
+        document.getElementById("largePriceDisplay").innerText =    
+
+            (largeCounter * 5.2).toFixed(2);
+        document.getElementById("xlargeUnitDisplay").innerText =
+            xLargeCounter;
+        document.getElementById("xlargePriceDisplay").innerText =
+            (xLargeCounter * 6.5).toFixed(2);
+
+        return rate.toFixed(2);
+      };
+
+      document.getElementById("units").addEventListener("input", generateBill);
+    </script>
+  </body>
+</html>

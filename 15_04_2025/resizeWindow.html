@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resize Window</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            padding: 0;
+            font-size: 2em;
+            margin:0 ;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Dimensions:- <span id="window-dimensions">xxx X xxx</span></h1>
+    <script>
+        function updateDimensions() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            if(width < 360){
+                document.getElementsByTagName('h1')[0].innerHTML = '<span id="window-dimensions">xxx X xxx</span>';
+            }
+            else{
+                
+                document.getElementsByTagName('h1')[0].innerHTML = 'Dimensions:- <span id="window-dimensions">xxx X xxx</span>';
+
+            }
+            document.getElementById('window-dimensions').innerText = `${width} X ${height}`;
+        }
+        window.addEventListener('resize', updateDimensions);
+        window.addEventListener('load', updateDimensions);
+    </script>
+</body>
+</html>

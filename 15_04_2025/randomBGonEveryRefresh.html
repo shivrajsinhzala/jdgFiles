@@ -10,6 +10,10 @@
     <script src="GenerateRandomHexadecimalCode.js"></script>
     <script>
         document.body.style.backgroundColor = '#' + randomHex();
+
+        setInterval(() => {
+            document.body.style.backgroundColor = '#' + randomHex();
+        }, 2000);
     </script>
 </body>
 </html>
